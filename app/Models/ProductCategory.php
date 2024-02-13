@@ -10,7 +10,8 @@ class ProductCategory extends Model
 	use FileRelationTrait;
 
 	protected $fillable = [
-		'title'
+		'title',
+		'slug'
 	];
 
 	public function products(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
@@ -21,5 +22,10 @@ class ProductCategory extends Model
 			'category_id',
 			'product_id'
 		);
+	}
+
+	public function url(): string
+	{
+		return route('catalog.show', ['slug' => $this->slug]);
 	}
 }

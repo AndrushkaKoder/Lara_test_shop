@@ -6,6 +6,7 @@ use App\Models\File\Traits\FileTrait;
 use App\Models\Product;
 use App\Models\ProductCategory;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
 class ProductSeeder extends Seeder
 {
@@ -29,6 +30,7 @@ class ProductSeeder extends Seeder
 			'description' => $data['description'],
 			'price' => $data['price'],
 			'count' => $this->getRandomInteger(),
+			'slug' => Str::slug($data['title']),
 		]);
 		$product->save();
 

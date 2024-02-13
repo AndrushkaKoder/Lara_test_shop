@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\File;
 
 trait FileTrait
 {
-	/**
+	/*
 	* Трейт для сохранения файлов по внешним ссылкам
 	 */
 	private function saveCover(string $file, $model): void

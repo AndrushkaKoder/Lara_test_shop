@@ -1,7 +1,7 @@
 <?php
 
+use App\Http\Controllers\CatalogController;
 use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,3 +16,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
 	return view('pages.home.index');
 });
+
+Route::get('/catalog', [CatalogController::class, 'index'])->name('catalog.index');
+Route::get('/catalog/{slug}', [CatalogController::class, 'show'])
+	->name('catalog.show')
+	->where('slug', '[a-z]+');
+
+

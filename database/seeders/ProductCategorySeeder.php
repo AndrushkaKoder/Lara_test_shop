@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\File\Traits\FileTrait;
 use App\Models\ProductCategory;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
 class ProductCategorySeeder extends Seeder
 {
@@ -19,7 +20,8 @@ class ProductCategorySeeder extends Seeder
 		foreach ($categories as $category) {
 			$newCategory = new ProductCategory();
 			$newCategory->fill([
-				'title' => $category['title']
+				'title' => $category['title'],
+				'slug' => Str::slug($category['title'])
 			])->save();
 
 			if (isset($category['cover']))

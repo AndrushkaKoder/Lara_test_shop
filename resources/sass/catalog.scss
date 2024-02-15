@@ -1,3 +1,11 @@
+main{
+	min-height: 100vh;
+}
+.cart{
+	img{
+		width: 30px;
+	}
+}
 .card {
 	max-height: 450px;
 	position: relative;
@@ -33,4 +41,19 @@
 			object-fit: contain;
 		}
 	}
+}
+.status-in-cart{
+	color: #fff;
+	background: green;
+}
+.cart-image{
+	width: 150px;
+	img {
+		max-width: 100%;
+		object-fit: cover;
+	}
+}
+
+.product-photo {
+	max-width: 200px;
 }

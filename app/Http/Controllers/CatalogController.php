@@ -15,8 +15,9 @@ class CatalogController extends Controller
 
 	public function show(string $slug)
 	{
-		$category = ProductCategory::query()->where('slug', $slug)
-			->with(['products' => function($query) {
+		$category = ProductCategory::query()
+			->where('slug', $slug)
+			->with(['products' => function ($query) {
 				return $query->with('images');
 			}])
 			->firstOrFail();
@@ -28,8 +29,9 @@ class CatalogController extends Controller
 	{
 		$product = Product::query()
 			->where('slug', $slug)
+			->with('images')
 			->firstOrFail();
 
-		return view('pages.catalog.products.index', ['product' => $product]);
+		return view('pages.catalog.product.show', ['product' => $product]);
 	}
 }

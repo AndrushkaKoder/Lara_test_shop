@@ -18,10 +18,10 @@ trait FileRelationTrait
 
 	public function getCover(): ?string
 	{
-		$coverName =  $this->images()->where('type', FileEnum::F_COVER->value)->firstOrFail();
+		$cover =  $this->images()->where('type', FileEnum::F_COVER->value)->firstOrFail();
 
-		if($coverName) {
-			$path = '/System/' .  get_class($this) . '/' . $this->id . '/cover/' . $coverName->filename;
+		if($cover) {
+			$path = '/System/' .  get_class($this) . '/' . $this->id . '/cover/' . $cover->filename;
 			return correctFilePath($path);
 		}
 		return null;
@@ -31,6 +31,14 @@ trait FileRelationTrait
 	{
 		$photos = $this->images()->where('type', FileEnum::F_PHOTO->value)->get();
 
-		return $photos->count() ? $photos->toArray() : [];
+		if($photos->count()) {
+			$photosArray = [];
+			foreach ( $photos as $photo) {
+				$path = '/System/' .  get_class($this) . '/' . $this->id . '/photo/' . $photo->filename;
+				$photosArray[] = correctFilePath($path);
+			}
+			return $photosArray;
+		}
+		return [];
 	}
 }

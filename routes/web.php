@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CatalogController;
 use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,4 +24,8 @@ Route::get('/catalog/{slug}', [CatalogController::class, 'show'])
 	->name('catalog.show')
 	->where('slug', '[a-z]+');
 
+Route::get('/catalog/product/{slug}', [CatalogController::class, 'product'])->name('product.show');
 
+Route::post('/cart', [CartController::class, 'addToCart']);
+Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+Route::post('/cart/clear', [CartController::class, 'clearCart'])->name('cart.clear');

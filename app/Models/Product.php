@@ -48,4 +48,9 @@ class Product extends Model
 			return $category['title'];
 		}, $this->categories->toArray()));
 	}
+
+	public function getPath(): string
+	{
+		return route('product.show', ['slug' => $this->slug]);
+	}
 }
